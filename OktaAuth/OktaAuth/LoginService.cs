@@ -16,8 +16,7 @@ namespace OktaAuth
         public string BuildAuthenticationUrl()
         {
             var state = CreateCryptoGuid();
-            var nonce = CreateCryptoGuid();
-            
+            var nonce = CreateCryptoGuid();            
             var codeChallenge = CreateCodeChallenge();
 
             return $"{OktaConfiguration.OrganizationUrl}/oauth2/default/v1/authorize?response_type={IDToken}&scope=openid%20profile&redirect_uri={OktaConfiguration.Callback}&client_id={OktaConfiguration.ClientId}&state={state}&code_challenge={codeChallenge}&code_challenge_method={CodeChallengeMethod}&nonce={nonce}";

@@ -29,6 +29,13 @@ namespace OktaAuth.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Xamarin.Essentials.Platform.OnResume();
+        }
     }
 
     [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop)]

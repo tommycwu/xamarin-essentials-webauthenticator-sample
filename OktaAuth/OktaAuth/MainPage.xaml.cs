@@ -28,19 +28,18 @@ namespace OktaAuth
                 var callbackUrl = new Uri(OktaConfiguration.Callback);
                 var loginUrl = new Uri(loginService.BuildAuthenticationUrl());
                 var authenticationResult = await WebAuthenticator.AuthenticateAsync(loginUrl, callbackUrl);
-
+                var accessToken = authenticationResult?.IdToken;
                 var token = loginService.ParseAuthenticationResult(authenticationResult);
                 var nameClaim = token.Claims.FirstOrDefault(claim => claim.Type == "given_name");
-
                 if (nameClaim != null)
                 {
                     WelcomeLabel.Text = $"Welcome to Xamarin.Forms {nameClaim.Value}!";
                     LogoutButton.IsVisible = !(LoginButton.IsVisible = false);
                 }
             }
-            catch (TaskCanceledException)
+            catch (Exception ex)
             {
-
+                var s = ex.Message;
             }
         }
 
