@@ -23,6 +23,7 @@ namespace OktaAuth.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -36,6 +37,7 @@ namespace OktaAuth.Droid
 
             Xamarin.Essentials.Platform.OnResume();
         }
+
     }
 
     [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop)]
@@ -44,11 +46,7 @@ namespace OktaAuth.Droid
         DataScheme = OktaConfiguration.CallbackScheme)]
     public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
     {
-        protected override void OnResume()
-        {
-            base.OnResume();
 
-            Xamarin.Essentials.Platform.OnResume();
-        }
     }
+
 }

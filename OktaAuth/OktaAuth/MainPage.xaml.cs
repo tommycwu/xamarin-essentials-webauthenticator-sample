@@ -9,8 +9,6 @@ using Xamarin.Forms;
 
 namespace OktaAuth
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
@@ -26,9 +24,8 @@ namespace OktaAuth
             try
             {
                 var callbackUrl = new Uri(OktaConfiguration.Callback);
-                var loginUrl = new Uri(loginService.BuildAuthenticationUrl());
-                var authenticationResult = await WebAuthenticator.AuthenticateAsync(loginUrl, callbackUrl);
-                var accessToken = authenticationResult?.IdToken;
+                var authUrl = new Uri(loginService.BuildAuthenticationUrl());
+                var authenticationResult = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
                 var token = loginService.ParseAuthenticationResult(authenticationResult);
                 var nameClaim = token.Claims.FirstOrDefault(claim => claim.Type == "given_name");
                 if (nameClaim != null)

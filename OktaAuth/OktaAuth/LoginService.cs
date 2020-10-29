@@ -48,6 +48,7 @@ namespace OktaAuth
         {
             var handler = new JwtSecurityTokenHandler();
             var token = handler.ReadJwtToken(authenticationResult.IdToken);
+
             return token;
         }
     }
