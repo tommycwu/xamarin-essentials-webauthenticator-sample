@@ -40,10 +40,11 @@ namespace OktaAuth
             }
         }
 
-        private void LogoutButtonClicked(object sender, EventArgs e)
+        private async void LogoutButtonClicked(object sender, EventArgs e)
         {
             WelcomeLabel.Text = "Welcome to Xamarin.Forms!";
             LogoutButton.IsVisible = !(LoginButton.IsVisible = true);
+            await Browser.OpenAsync($"{OktaConfiguration.OrganizationUrl}/login/signout", BrowserLaunchMode.SystemPreferred);
         }
     }
 }
